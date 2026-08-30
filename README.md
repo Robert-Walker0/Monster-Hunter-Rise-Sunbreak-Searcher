@@ -1,29 +1,69 @@
-# Ultimate Monster Hunter Wilds Set Builder
+# Monster Hunter Rise: Sunbreak Set Searcher
 
-## A Monster Hunter Wilds Set Builder that lets you build, share, rate, and recommend armor sets and weapons for your friends and the community.
+## Search for Rise: Sunbreak Builds along with so much more
 
-Ultimate Monster Hunter Wilds Set Builder, or UMHWSB for short, is a web application designed for hunters who want to optimize their builds for their gameplay experience. Let the system create and customize armor and weapon sets for you, discover optimal skill combos, and share your builds with your friends or the Monster Hunter Community.
+Monster Hunter Rise: Sunbreak Set Searcher is a web application designed to help hunters search, compare, optimize, and share armor and weapon builds for Monster Hunter Rise: Sunbreak.
 
-Find the armor set built for your playstyle with this application.
+## Technologies
+
+- HTML
+- CSS
+- JavaScript
+- React
+- Next.js
+- TypeScript
 
 ## Features
 
-- [ ] Armor Set Builder
-- [ ] Base Recommendation System for Searcher
-- [ ] Login System/Social Platform
-- [ ] Account Login for Posts, Replies, Ratings, Recommendations, etc
-- [ ] Search for armor sets by weapons, playstyles, or skills
+Features to be implemented.
 
-> Completed ✅
-> Incomplete 📃
+## Planned Features
+
+- Armor Set Searcher
+- Build Comparison
+- Save Builds
+- Search recommended skills by weapon
+- Search recommended skills by playstyles
+- Progression based equipment roadmapping
+- "Will This Attack Cart Me?" damage calculator
+- Import Builds
+- Export Builds
+
+## The Process
+
+Explanation of how I built it.
+
+## What I learned
+
+Explanation of the stuff I learned.
 
 ## Getting Started
 
-Set up instructions coming soon. Currently, there is only the README and LICENSE file.
+### Running the Project
+
+**Development has not started yet.**
+
+The repository currently contains the project documentation and license.
+
+Setup instructions will be added once the application has an initial implementation.
+
+### Running the Test
+
+Instructions to run the tests
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request.
+Contributions are welcome.
+
+If you would like to contribute:
+
+1. Open an issue to discuss the change or feature.
+2. Fork the repository.
+3. Create a branch for your changes.
+4. Make your changes.
+5. Submit a pull request.
+
+More detailed contribution guidelines will be added as development progresses.
 
 ## License
 
