@@ -1,6 +1,11 @@
 
+# Application
+app/node_modules
+app/.next
 
 # Docs
 docs/ARCHITECTURE.md
 docs/RELEASE.md
+
+node_modules/
 
