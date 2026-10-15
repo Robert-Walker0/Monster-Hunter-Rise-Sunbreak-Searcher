@@ -1,0 +1,35 @@
+.skillList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.skillItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 4px 0;
+  border: none;
+}
+
+.skillItem label {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.skillItem select {
+  min-height: 28px;
+  padding: 2px 4px;
+  cursor: pointer;
+}
+
+
+
+.categoryHeader {
+  background-color: #e0e0e0;
+  padding: 8px;
+  border-radius: 4px;
+}
