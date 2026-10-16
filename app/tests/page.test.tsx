@@ -11,6 +11,8 @@ import { describe, expect, test, beforeAll, afterAll } from "vitest";
 import { computeAccessibleName } from "dom-accessibility-api";
 import "@testing-library/jest-dom/vitest";
 import Home from "../src/app/page";
+import styles from "../src/app/page.module.css";
+
 
 configure({
   getElementError: (message) => {
@@ -197,7 +199,7 @@ const battleSurvivalSkills = [
 
 
 const categories = {
-  "Attack Status": attackStatusSkills,
+  "Attack (Status)": attackStatusSkills,
   "Defense Stats": defenseStatsSkills,
   "Blademaster Skills": blademasterSkills,
   "Gunner Skills": gunnerSkills,
@@ -239,6 +241,7 @@ function testSkillCategory(category: string, expectedSkills: string[]) {
     },
   );
 }
+
 describe("Monster Hunter Rise: Set Searcher skill data", () => {
   test("does not contain duplicate skills", () => {
     const uniqueSkills = new Set(categorizedSkills);
@@ -274,7 +277,92 @@ describe("Monster Hunter Rise: Set Searcher page", () => {
     expect(screen.getByText("Hunter Info")).toBeInTheDocument();
   });
 
-  testSkillCategory("Attack Status", attackStatusSkills);
+  const optionLabels = (select: HTMLElement) => within(select).getAllByRole("option", { hidden: true }).map((option) => option.textContent);
+
+
+  test("gender is a dropdown with Male and Female", () => {
+    const gender = screen.getByRole("combobox", { name: "Gender" });
+
+    expect(optionLabels(gender)).toEqual(["Male", "Female"]);
+  });
+
+  test("Search button is at the bottom of the page", () => {
+    const search = screen.getByRole("button", { name: "Search" });
+    const lastHeading = screen.getAllByRole("heading", { level: 3 }).at(-1)!;
+
+    expect(
+      lastHeading.compareDocumentPosition(search) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+  });
+
+  test("village is a dropdown from Village 1 to Village 8", () => {
+    const village = screen.getByRole("combobox", { name: "Village" });
+
+    expect(optionLabels(village)).toEqual(
+      Array.from({ length: 8 }, (_, i) => `Village ${i + 1}`),
+    );
+  });
+
+  test("hunter rank and master rank are number inputs", () => {
+    expect(screen.getByRole("spinbutton", { name: "Hunter Rank" })).toBeInTheDocument();
+    expect(screen.getByRole("spinbutton", { name: "Master Rank" })).toBeInTheDocument();
+  });
+
+  test("rank filter is a dropdown with Low, High, Master and No Filter", () => {
+    const filter = screen.getByRole("combobox", { name: "Rank Filter" });
+
+    expect(optionLabels(filter)).toEqual([
+      "Low Rank",
+      "High Rank",
+      "Master Rank",
+      "No Filter",
+    ]);
+  });
+
+  const hunterInfoFields = [
+    "Hunter Rank",
+    "Master Rank",
+    "Gender",
+    "Village",
+    "Rank Filter",
+    "None Slot Weapon",
+    "Limit Results",
+  ];
+
+  const getHunterField = (row: HTMLElement, name: string) =>
+    within(row).queryByLabelText(name) ??
+    within(row).getByText(new RegExp(name));
+
+  const getHunterInfoRow = () =>
+    screen.getByRole("group", { name: "Hunter Info fields", hidden: true });
+
+  test("Hunter Info fields are all in one row with nothing else", () => {
+    const row = getHunterInfoRow();
+
+    hunterInfoFields.forEach((field) => {
+      expect(getHunterField(row, field)).toBeInTheDocument();
+    });
+    expect(row.children).toHaveLength(hunterInfoFields.length);
+  });
+
+  test("Hunter Info fields are in the expected order", () => {
+    const row = getHunterInfoRow();
+    const fields = hunterInfoFields.map((field) => getHunterField(row, field));
+
+    fields.slice(1).forEach((field, index) => {
+      expect(
+        fields[index].compareDocumentPosition(field) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+    });
+  });
+
+  test("Hunter Info row uses its layout class", () => {
+    expect(getHunterInfoRow()).toHaveClass(styles.hunterInfoRow);
+  });
+
+  testSkillCategory("Attack (Status)", attackStatusSkills);
   testSkillCategory("Defense Stats", defenseStatsSkills);
   testSkillCategory("Blademaster Skills", blademasterSkills);
   testSkillCategory("Gunner Skills", gunnerSkills);
