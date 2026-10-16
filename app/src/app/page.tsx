@@ -1,8 +1,16 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+import SkillList from "./components/SkillList";
+import LabeledSelect from "./components/LabeledSelect";
 
-const PLACEHOLDER_MAX_LEVEL = 5;
-const levels = Array.from({ length: PLACEHOLDER_MAX_LEVEL + 1 }, (_, level) => level);
+const genderOptions = ["Male", "Female"];
+
+const MAX_VILLAGE = 8;
+const villageOptions = Array.from(
+  { length: MAX_VILLAGE },
+  (_, i) => `Village ${i + 1}`,
+);
+
+const rankFilterOptions = ["Low Rank", "High Rank", "Master Rank", "No Filter"];
 
 const questSkills = [
   "Botanist",
@@ -179,44 +187,53 @@ const setSkills = [
   "Wind Alignment",
 ];
 
-function SkillItem({ skill }: { skill: string }) {
-  const id = `skill-${skill.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
-
-  return (
-    <div className={styles.skillItem}>
-      <label htmlFor={id}>{skill}</label>
-      <select id={id} defaultValue={0}>
-        {levels.map((level) => (
-          <option key={level} value={level}>
-            {level}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-}
-
-function SkillList({ skills }: { skills: string[] }) {
-  return (
-    <div className={styles.skillList}>
-      {skills.map((skill) => (
-        <SkillItem key={skill} skill={skill} />
-      ))}
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <div>
       <title>Monster Hunter Rise: Set Searcher</title>
+
       <h2>Hunter Info</h2>
       <p>Stuff about the user hunter</p>
-      <p>Male or Female</p>
-      <p>None Slot Weapon</p>
-      <p>Limit Results: 200</p>
 
-      <br></br>
+      <div
+        role="group"
+        aria-label="Hunter Info fields"
+        className={styles.hunterInfoRow}
+      >
+        <div>
+          <label htmlFor="hunter-rank">Hunter Rank</label>
+          <input id="hunter-rank" type="number" />
+        </div>
+
+        <div>
+          <label htmlFor="master-rank">Master Rank</label>
+          <input id="master-rank" type="number" />
+        </div>
+
+        <LabeledSelect
+          id="gender"
+          label="Gender"
+          options={genderOptions}
+        />
+
+        <LabeledSelect
+          id="village"
+          label="Village"
+          options={villageOptions}
+        />
+
+        <LabeledSelect
+          id="rank-filter"
+          label="Rank Filter"
+          options={rankFilterOptions}
+          defaultValue="No Filter"
+        />
+
+        <p>None Slot Weapon</p>
+        <p>Limit Results: 200</p>
+      </div>
+
+      <br />
 
       <h3 className={styles.categoryHeader}>Quest</h3>
       <SkillList skills={questSkills} />

@@ -1,3 +1,21 @@
+.hunterInfoRow {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  gap: 1rem;
+  overflow-x: auto;
+}
+
+.hunterInfoRow p {
+  margin: 0;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.hunterInfoRow input[type="number"] {
+  width: 6rem;
+}
+
 .skillList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -25,8 +43,6 @@
   padding: 2px 4px;
   cursor: pointer;
 }
-
-
 
 .categoryHeader {
   background-color: #e0e0e0;
