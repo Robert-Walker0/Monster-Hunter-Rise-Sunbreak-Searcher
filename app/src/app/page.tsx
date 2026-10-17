@@ -34,6 +34,8 @@ const itemSkills = [
 const battleSurvivalSkills = [
   "Recovery Up",
   "Recovery Speed",
+  "Poison Resistance",
+  "Blight Resistance", 
   "Blood Rite",
   "Quick Breath",
   "Divine Blessing",
