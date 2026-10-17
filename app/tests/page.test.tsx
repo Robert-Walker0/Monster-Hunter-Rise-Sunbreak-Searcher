@@ -175,6 +175,8 @@ const battleSurvivalSkills = [
   "Blood Rite",
   "Quick Breath",
   "Divine Blessing",
+  "Poison Resistance",
+  "Blight Resistance",
   "Guts",
   "Intrepid Heart",
   "Redirection",
