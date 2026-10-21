@@ -1,10 +1,5 @@
 import styles from "../page.module.css";
-
-const PLACEHOLDER_MAX_LEVEL = 5;
-const levels = Array.from(
-  { length: PLACEHOLDER_MAX_LEVEL + 1 },
-  (_, level) => level,
-);
+import { maxSkillLevels } from "../data/skills_data";
 
 type SkillItemProps = {
   skill: string;
@@ -15,6 +10,9 @@ export default function SkillItem({ skill }: SkillItemProps) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")}`;
+
+  const maxLevel = maxSkillLevels[skill] ?? 0;
+  const levels = Array.from({ length: maxLevel + 1 }, (_, level) => level);
 
   return (
     <div className={styles.skillItem}>
